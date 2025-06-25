@@ -1,0 +1,232 @@
+<!-- BAGIAN HTML YANG TELAH DIPERBARUI -->
+<!-- Disalin seluruhnya agar bisa langsung digunakan atau diunggah -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tugas Kajian Literatur</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      color: #004080;
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-top: 20px;
+    }
+
+    .options {
+      margin-left: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      font-size: 0.95em;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 15px;
+      font-weight: bold;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-weight: bold;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #003366;
+    }
+
+    .instruction {
+      margin-top: 40px;
+      font-weight: bold;
+      color: #004080;
+      font-size: 1.1em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .img-container,
+    .main-image {
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.2em;
+      }
+
+      button {
+        font-size: 0.9em;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Gambar Utama -->
+  <div class="main-image">
+    <img src="https://raw.githubusercontent.com/mathnology/Penelitian-Relevan/refs/heads/main/gif%20mathnology.gif" alt="Gambar Utama Mathnology" />
+  </div>
+
+  <div class="container">
+    <h1>Penelitian Kuantitatif Data Cross Section</h1>
+    <p>
+      Carilah <strong>minimal 15 artikel terbaru</strong> dan tandai temuan Anda sesuai kriteria berikut:
+    </p>
+
+    <form id="literatureForm">
+      <div class="question">
+        <p><strong>1. Apakah Anda menemukan alasan mengapa para peneliti meneliti variabel Y?</strong></p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="ya" /> Ya</label>
+          <label><input type="radio" name="q1" value="tidak" /> Tidak</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>2. Apakah sudah ada artikel yang membahas pengaruh variabel X terhadap variabel Y?</strong></p>
+        <small style="color: #666; font-style: italic;">(Semakin bervariatif hasil penelitian yang ditemukan, semakin baik untuk kajian literatur)</small>
+        <div class="options">
+          <label><input type="checkbox" name="q2" value="positif" /> Ya, menunjukkan pengaruh positif</label>
+          <label><input type="checkbox" name="q2" value="negatif" /> Ya, menunjukkan pengaruh negatif</label>
+          <label><input type="checkbox" name="q2" value="tidak-berpengaruh" /> Ya, tidak berpengaruh</label>
+          <label><input type="checkbox" name="q2" value="belum-ada" /> Belum ada artikel yang meneliti hubungan ini</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>3. Apakah sudah ada penelitian yang dilakukan pada subjek atau lokasi yang sama?</strong></p>
+        <div class="options">
+          <label><input type="checkbox" name="q3" value="lokasi-sama" /> Sudah ada di lokasi yang sama</label>
+          <label><input type="checkbox" name="q3" value="subjek-sama" /> Sudah ada di subjek yang sama</label>
+          <label><input type="checkbox" name="q3" value="belum-ada" /> Belum ada sama sekali</label>
+          <label><input type="checkbox" name="q3" value="berbeda" /> Ada tapi di konteks yang berbeda</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>4. Apakah sudah tersedia angket atau instrumen untuk variabel-variabel tersebut?</strong></p>
+        <div class="options">
+          <label><input type="checkbox" name="q4" value="sudah-valid" /> Sudah tersedia dan tervalidasi</label>
+          <label><input type="checkbox" name="q4" value="belum-valid" /> Sudah tersedia tapi belum diuji validitasnya</label>
+          <label><input type="checkbox" name="q4" value="belum-ada" /> Belum tersedia, perlu membuat instrumen baru</label>
+        </div>
+      </div>
+
+      <button type="button" onclick="checkEligibility()">Cek Kelayakan Konsultasi</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <p class="instruction">Susunlah artikel-artikel tersebut dalam tabel:</p>
+
+    <div class="img-container">
+      <img src="https://raw.githubusercontent.com/mathnology/Penelitian-Relevan/refs/heads/main/Tabel%20Kajian%20Pustaka.png" alt="Tabel Kajian Pustaka" />
+      <br /><br />
+      <img src="https://raw.githubusercontent.com/mathnology/Penelitian-Relevan/refs/heads/main/Tabel%20Relevansi%20dengan%20Penelitian%20Sebelumnya.png" alt="Tabel Relevansi dengan Penelitian Sebelumnya" />
+      <br /><br />
+      <img src="https://raw.githubusercontent.com/mathnology/Penelitian-Relevan/refs/heads/main/Tabel%20Angket.png" alt="Tabel Angket Penelitian" />
+    </div>
+  </div>
+
+  <script>
+    function checkEligibility() {
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      if (!q1 || q1.value === "tidak") {
+        showError("Jawaban pada pertanyaan 1 menyatakan 'Tidak'.");
+        return;
+      }
+
+      const q2 = document.querySelectorAll('input[name="q2"]:checked');
+      const q2BelumAda = Array.from(q2).some(cb => cb.value === "belum-ada");
+      if (q2BelumAda) {
+        showError("Jawaban pada pertanyaan 2 menyatakan 'Belum ada artikel yang meneliti hubungan ini'.");
+        return;
+      }
+
+      const q3 = document.querySelectorAll('input[name="q3"]:checked');
+      const q3BelumAda = Array.from(q3).some(cb => cb.value === "belum-ada");
+      if (q3BelumAda) {
+        showError("Jawaban pada pertanyaan 3 menyatakan 'Belum ada sama sekali'.");
+        return;
+      }
+
+      const q4 = document.querySelectorAll('input[name="q4"]:checked');
+      const q4BelumAda = Array.from(q4).some(cb => cb.value === "belum-ada");
+      if (q4BelumAda) {
+        showError("Jawaban pada pertanyaan 4 menyatakan 'Belum tersedia'.");
+        return;
+      }
+
+      resultBox.className = "result success";
+      resultBox.innerText = "✅ Sudah layak untuk konsultasi. Silakan lanjutkan ke tahap berikutnya.";
+    }
+
+    function showError(msg) {
+      const resultBox = document.getElementById("result");
+      resultBox.className = "result error";
+      resultBox.innerText = "❌ Belum layak untuk konsultasi. " + msg;
+    }
+  </script>
+</body>
+</html>
